@@ -22,6 +22,12 @@ public class ApplicationScopedService {
         count = 0L;
     }
 
+    /**
+     * Por mais que nesse caso funcione, nunca deve ser lido ou escrito um valor
+     * usando ApplicationScoped, pois pode estar obsoleto.
+     * Somente use com Singleton.
+     * 
+     */
     public Long getCount() {
         Log.infov("Contado atual: {0}", count);
         return count++;

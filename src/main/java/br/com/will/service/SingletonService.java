@@ -22,9 +22,13 @@ public class SingletonService {
         count = 0L;
     }
 
+    /**
+     * Com Singleton é safe ler e escrever valores
+     * 
+     */
     public Long getCount() {
         Log.infov("Contado atual: {0}", count);
         return count++;
     }
-    
+
 }

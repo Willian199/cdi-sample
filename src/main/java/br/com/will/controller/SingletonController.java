@@ -15,7 +15,10 @@ public class SingletonController {
     @Inject
     SingletonService singletonService;
 
-    @Operation(description = "O contador de retorno do servico será incrementado em 1 toda vez que for chamado. A diferenca para ApplicationScoped consiste em que o ApplicationScoped é Thread safe.")
+    @Operation(description = "O contador de retorno do servico será incrementado em 1 toda vez que for chamado. A diferenca para ApplicationScoped consiste em que o ApplicationScoped é Thread safe."
+            +
+            "<br> Com Singleton é safe ler e escrever valores. Porém não possibilita usar QuarkusMock." +
+            "<br> Como não possui um Client Proxy, tende a ter um desempenho levemente melhor comparado ao ApplicationScoped")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String count() {

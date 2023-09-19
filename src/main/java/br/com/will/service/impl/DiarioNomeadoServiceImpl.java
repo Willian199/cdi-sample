@@ -1,12 +1,12 @@
-package br.com.will.regra.impl;
+package br.com.will.service.impl;
 
 import br.com.will.annotation.Selector;
-import br.com.will.regra.PeriodoRegraNomeado;
+import br.com.will.service.PeriodoNomeadoService;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @Selector("diario")
 @ApplicationScoped
-public class DiarioRegraNomeadoImpl implements PeriodoRegraNomeado {
+public class DiarioNomeadoServiceImpl implements PeriodoNomeadoService {
 
     @Override
     public String periodo() {

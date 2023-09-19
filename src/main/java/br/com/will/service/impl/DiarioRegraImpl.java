@@ -1,12 +1,12 @@
-package br.com.will.regra.impl;
+package br.com.will.service.impl;
 
 import br.com.will.annotation.Diario;
-import br.com.will.regra.PeriodoRegra;
+import br.com.will.service.BasePeriodoService;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @Diario
 @ApplicationScoped
-public class DiarioRegraImpl implements PeriodoRegra {
+public class DiarioRegraImpl implements BasePeriodoService {
 
     @Override
     public String periodo() {

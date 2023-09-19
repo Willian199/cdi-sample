@@ -1,4 +1,4 @@
-package br.com.will.service;
+package br.com.will.service.impl;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -7,7 +7,8 @@ import java.util.Map;
 import br.com.will.annotation.Diario;
 import br.com.will.annotation.Mensal;
 import br.com.will.annotation.Semanal;
-import br.com.will.regra.PeriodoRegra;
+import br.com.will.service.BasePeriodoService;
+import br.com.will.service.PeriodoMapService;
 import io.quarkus.runtime.util.StringUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Any;
@@ -17,11 +18,11 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
 
 @ApplicationScoped
-public class PeriodoServiceMap {
+public class PeriodoMapServiceImpl implements PeriodoMapService{
 
     @Inject
     @Any
-    private Instance<PeriodoRegra> anyPeriodoProcessor;
+    private Instance<BasePeriodoService> anyPeriodoProcessor;
 
     private static final Map<String, Class<? extends Annotation>> QUALIFIER_MAP = new HashMap<>();
 
@@ -31,6 +32,7 @@ public class PeriodoServiceMap {
         QUALIFIER_MAP.put("mensal", Mensal.class);
     }
 
+    @Override
     public String periodo(String periodo) {
 
         if (StringUtil.isNullOrEmpty(periodo)) {

@@ -4,8 +4,8 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.ExampleObject;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
+import br.com.will.service.PeriodoMapService;
 import br.com.will.service.PeriodoService;
-import br.com.will.service.PeriodoServiceMap;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -19,7 +19,7 @@ public class PeriodoController {
     PeriodoService periodoService;
 
     @Inject
-    PeriodoServiceMap periodoServiceMap;
+    PeriodoMapService periodoServiceMap;
 
     @Operation(description = "Conforme o periodo passado será executado a regra referente. <br> Parâmetros aceitos: diario, semanal, mensal")
     @Parameter(name = "periodo", required = true, examples = { @ExampleObject(value = "diario, semanal, mensal") })

@@ -1,8 +1,6 @@
 package br.com.will.controller;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.ExampleObject;
-import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import br.com.will.record.SistemaRecord;
 import jakarta.inject.Inject;
@@ -18,7 +16,7 @@ public class ProducesController {
     SistemaRecord sistemaRecord;
 
     @Operation(description = "Anotando com Producer, o objeto será criado na primeira vez que for feito o Inject, ficando disponivel para demais acessos")
-    @Parameter(name = "periodo", required = true, examples = { @ExampleObject(value = "diario, semanal, mensal") })
+
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String produce() {

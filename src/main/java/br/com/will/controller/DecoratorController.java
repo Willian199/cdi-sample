@@ -1,8 +1,6 @@
 package br.com.will.controller;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.ExampleObject;
-import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import br.com.will.service.NomeService;
 import jakarta.inject.Inject;
@@ -18,7 +16,6 @@ public class DecoratorController {
     NomeService nomeService;
 
     @Operation(description = "O Decorator permite estender ou modificar o comportamento de uma classe original. <br> Sendo útil quando deseja adicionar funcionalidades específicas a uma classe que pertence a alguma biblioteca de terceiros. Podendo adicionar regras antes ou após a execução.")
-    @Parameter(name = "periodo", required = true, examples = { @ExampleObject(value = "diario, semanal, mensal") })
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String produce() {

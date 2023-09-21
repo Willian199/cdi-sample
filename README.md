@@ -1,59 +1,86 @@
-# cdi-sample
+# Biblioteca CDI no Quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Visão Geral
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Este é um guia sobre Contexts and Dependency Injection(CDI) no Quarkus. Este README fornece informações essenciais para começar a usar a biblioteca em seu projeto Quarkus.
+A biblioteca ArC, é baseada na especificação Jakarta Contexts and Dependency Injection 4.0. Ela implementa a especificação CDI Lite, com melhorias especificas.
 
-## Running the application in dev mode
+## Uso Básico
+O CDI (Contexts and Dependency Injection) no Quarkus utiliza anotações para injetar dependências e gerenciar o ciclo de vida dos objetos. Abaixo estão algumas das anotações mais comuns usadas:
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+- `@ApplicationScoped`: Essa anotação marca uma classe como escopo de aplicação, o que significa que uma única instância será compartilhada por toda a aplicação. A instância é criada apenas quando um método é chamado pela primeira vez. No mais, comportamento similar ao `@Singleton`.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+- `@Singleton`: Esta anotação marca uma classe como escopo Singleton, o que significa que uma única instância será compartilhada por toda a aplicação. A instância é criada quando o <i>Bean</i> é injetado e não possui [client proxy](https://quarkus.io/guides/cdi#client_proxies).
 
-## Packaging and running the application
+- `@Dependent`: Esta anotação marca uma classe como escopo Dependent, o que significa que uma nova instância será criada para cada injeção.
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+- `@RequestScoped`: Essa anotação marca uma classe como escopo de requisição, o que significa que uma nova instância será criada para cada requisição HTTP.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+- `@SessionScoped`: Essa anotação marca uma classe como escopo de sessão, o que significa que uma única instância será compartilhada por toda a sessão do usuário. Apenas disponivel se usar a extensão [quarkus-undertow](https://quarkus.io/extensions/io.quarkus/quarkus-undertow).
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+- `@TransactionScoped`: Essa anotação marca uma classe como escopo de Transação, compartilhando o mesmo contexto entre os <i>Beans</i> da transação atual. Apenas disponivel se usar a extensão [quarkus-narayana-jta](https://quarkus.io/guides/transaction).
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+- `@Named`: Use esta anotação para nomear um bean CDI para que ele possa ser referenciado ao fazer `@Inject`. O <i>Bean</i> não será removido, mesmo se não for usado.
 
-## Creating a native executable
+- `@Vetoed`: Esta anotação é usada para marcar uma classe que deve ser ignorada pelo CDI. Isso pode ser útil para evitar que uma classe seja considerada como um bean CDI.
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
+- `@Inject`: Use esta anotação para injetar uma dependência em um componente gerenciado pelo CDI. Por exemplo:
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+- `@WithCaching`: Permite realizar Cache da instância do <i>Beans</i> que foi injetado na classe usando `@Inject`.
 
-You can then execute your native executable with: `./target/cdi-sample-1.0.0-SNAPSHOT-runner`
+## Outras Annotations
+Além das anotações básicas mencionadas acima, no Quarkus oferece suporte a várias outras anotações:
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+- `@Qualifier`: Esta anotação é usada para criar qualificadores personalizados. Os qualificadores ajudam a diferenciar implementações de uma mesma interface que podem ser injetadas.
 
-## Related Guides
+- `@Produces`: Esta anotação é usada para criar e disponibilizar objetos gerenciados pelo CDI em um contexto. Você pode criar um método para produzir um objeto e torná-lo disponível para injeção.
+
+- `@Disposes`: Esta anotação é usada em conjunto com `@Produces` para marcar um método que é responsável por destruir uma instância criada por um método `@Produces`.
+
+- `@Decorator`: Anotação usada para criar decoradores que adicionam comportamento a um bean CDI. Os decoradores implementam interfaces que definem os métodos decorados.
+
+- `@Interceptor`: Use esta anotação para criar interceptadores CDI que podem ser usados para adicionar lógica adicional a métodos ou classes.
+
+- `@AroundConstruct`: Marca um método que será executado na classe de `@Interceptor` . Sendo usado para adicionar lógica no momento que for ser instanciado o <i>Bean</i>.
+
+- `@AroundInvoke`: Marca um método que será executado na classe de `@Interceptor` . Sendo usado para adicionar lógica adicional antes ou após a execução.
+
+- `@NoClassInterceptors`: Ignora os `@Interceptor` definidos na classe, sendo executados apenas os que estão definidos diretamente no método ou construtor. Utilizado quando a classe possui um `@Interceptor`, o método possui outro `@Interceptor` que possui uma regra semelhante ou não deseja executar o `@Interceptor` da classe para o método em questão.
+
+- `@Alternative`: Esta anotação é usada para marcar uma implementação alternativa de um bean. É útil quando você deseja fornecer várias implementações de uma interface e escolher qual delas usar.
+
+- `@Specializes`: Use esta anotação para criar uma classe que especializa outra classe, herdando seus métodos e campos e substituindo seu comportamento. Seu uso é para apenas quando deseja um <i>Bean</i> totalmente novo. Semelhante ao `@Alternative`, porém mantém apenas esse <i>Bean</i>, sem instâncias alternativas.
+
+- `@Priority`: Permite definir a prioridade de um bean CDI em relação a outros beans do mesmo tipo. Isso pode ser útil quando há vários beans compatíveis e você deseja especificar a ordem de seleção. Usando em conjunto com `@Alternative`, `@Decorator`, `@Interceptor`
+
+- `@Any`: Esta anotação pode ser usada para injetar qualquer <i>Bean</i> que corresponda ao tipo especificado, independentemente dos qualificadores.
+
+- `@All`: Esta anotação pode ser usada para injetar todos os <i>Bean</i> que correspondam ao tipo especificado, independentemente dos qualificadores.
+
+- `@Default`: É o `@Qualifier` padrão para os <i>Bean</i> e `@Inject`. Sendo adicionado automáticamente quando nenhum outro `@Qualifier` foi usado.
+
+- `@PostConstruct`: Esta anotação é usada para marcar um método que deve ser executado após a criação de um bean CDI. É útil para realizar inicializações específicas do bean.
+
+- `@PreDestroy`: Marca um método que será executado antes que um bean CDI seja destruído. Isso é útil para realizar ações de limpeza ou liberação de recursos.
+
+- `@Observes` ou `@ObservesAsync`: Esta anotação é usada para criar métodos observadores que reagem a eventos CDI. Os métodos marcados com @Observes podem ser acionados quando ocorrerem eventos específicos.
+
+- `@Startup`: Marca um bean para ser inicializado juntamente ao servidor. Porém é recomendado criar um método e usar `@Observes StartupEvent event`.
+
+- `@ConfigProperty`: Usada para injetar valores de configuração definidos em arquivos de propriedades ou variáveis de ambiente. Isso permite que você configure beans com propriedades externas.
+
+- `@ActivateRequestContext`: Possibilita adicionar o contexto de requisição em um método ou classe que não possui contexto. Por exemplo em Threads que precisam realizar selects.
+
+- `@Unremovable`: Usada para marcar um <i>Bean</i> como "não removível". Isso significa que o <i>Bean</i> não será removido da aplicativo, mesmo se não for usado explicitamente.
+
+- `@IfBuildProfile` ou `@UnlessBuildProfile`: Permite criar um <i>Bean</i> somente para os Profiles desejados. Necessário utilizar também `@DefaultBean`, definindo um <i>Bean</i> para os outros Profiles que não atendem a condição. Normalmente utilizado em métodos juntamente com `@Produces`.
+
+- `@IfBuildProperty` ou `@UnlessBuildProperty`: Permite criar um <i>Bean</i> baseado em uma property definida no arquivo de configuração ou variável de ambiente. Necessário utilizar também `@DefaultBean`, definindo um <i>Bean</i> para quando a property não atender a condição. Normalmente utilizado em métodos juntamente com `@Produces`.
+
+- `@LookupIfProperty` ou `@LookupUnlessProperty`: Utilizado para fazer o `@Inject` de um <i>Bean</i> baseado no arquivo de configuração ou variável de ambiente. Usado em classes quando não possui `@Qualifier` para escolher qual <i>Bean</i> será injetado.
+
+- `@ConfigProperty`: Usado para ler uma configuração presente no arquivo de configurações ou variável de ambiente.
+
+- `@Lock`: Usado para definir o funcionamento do acesso concorrente ao <i>Bean</i>. Normalmente utilizando juntamente com `@ApplicationScoped` e `@Singleton`.
 
 
-## Provided Code
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)

@@ -44,19 +44,19 @@ Além das anotações básicas mencionadas acima, no Quarkus oferece suporte a v
 
 - `@AroundConstruct`: Marca um método que será executado na classe de `@Interceptor`. Sendo usado para adicionar lógica no momento que for ser instanciado o **Bean**.
 
-- `@AroundInvoke`: Marca um método que será executado na classe de `@Interceptor`. Sendo usado para adicionar lógica adicional antes ou após a execução.
+- `@AroundInvoke`: Marca um método que será executado na classe de `@Interceptor`. Sendo usado para adicionar lógica adicional antes ou após a execução a método.
 
-- `@NoClassInterceptors`: Ignora os `@Interceptor` definidos na classe, sendo executados apenas os que estão definidos diretamente no método ou construtor. Utilizado quando a classe possui um `@Interceptor`, o método possui outro `@Interceptor` que possui uma regra semelhante ou não deseja executar o `@Interceptor` da classe para o método em questão.
+- `@NoClassInterceptors`: Ignora os `@Interceptor` definidos na classe, sendo executados apenas os que estão definidos diretamente no método ou construtor. Utilizado quando a classe possui um `@Interceptor`, o método possui outro `@Interceptor` possuindo uma regra semelhante ou quando não deseja executar o `@Interceptor` da classe para o método em questão.
 
-- `@Alternative`: Esta anotação é usada para marcar uma implementação alternativa de um bean. É útil quando você deseja fornecer várias implementações de uma interface e escolher qual delas usar.
+- `@Alternative`: Esta anotação é usada para marcar uma implementação alternativa de um **Bean**. É útil para alterar o comportamento de **Bean** presente em alguma biblioteca de terceiros ou do próprio Quarkus.
 
-- `@Specializes`: Use esta anotação para criar uma classe que especializa outra classe, herdando seus métodos e campos e substituindo seu comportamento. Seu uso é para apenas quando deseja um **Bean** totalmente novo. Semelhante ao `@Alternative`, porém mantém apenas esse **Bean**, sem instâncias alternativas.
+- `@Specializes`: Use esta anotação para criar uma classe que especializa outra classe, herdando seus métodos, campos e substituindo seu comportamento. Seu uso é para quando deseja um **Bean** totalmente novo. Semelhante ao `@Alternative`, porém mantém apenas esse **Bean**, sem instâncias alternativas.
 
-- `@Priority`: Permite definir a prioridade de um bean CDI em relação a outros beans do mesmo tipo. Isso pode ser útil quando há vários beans compatíveis e você deseja especificar a ordem de seleção. Usando em conjunto com `@Alternative`, `@Decorator`, `@Interceptor`.
+- `@Priority`: Permite definir a prioridade de um bean CDI em relação a outros beans do mesmo tipo. Isso é útil quando há vários beans compatíveis e você deseja especificar a ordem de seleção. Usando em conjunto com `@Alternative`, `@Decorator`, `@Interceptor`.
 
-- `@Any`: Esta anotação pode ser usada para injetar qualquer **Bean** que corresponda ao tipo especificado, independentemente dos qualificadores.
+- `@Any`: Esta anotação é usada para injetar qualquer **Bean** que corresponda ao tipo especificado, independentemente dos qualificadores.
 
-- `@All`: Esta anotação pode ser usada para injetar todos os **Bean** que correspondam ao tipo especificado, independentemente dos qualificadores.
+- `@All`: Esta anotação é usada para injetar todos os **Bean** que correspondam ao tipo especificado, independentemente dos qualificadores.
 
 - `@Default`: É o `@Qualifier` padrão para os **Bean** e `@Inject`. Sendo adicionado automaticamente quando nenhum outro `@Qualifier` foi usado.
 
@@ -66,7 +66,7 @@ Além das anotações básicas mencionadas acima, no Quarkus oferece suporte a v
 
 - `@Observes` ou `@ObservesAsync`: Esta anotação é usada para criar métodos observadores que reagem a eventos CDI. Os métodos marcados com @Observes podem ser acionados quando ocorrerem eventos específicos.
 
-- `@Startup`: Marca um bean para ser inicializado juntamente ao servidor. Porém é recomendado criar um método e usar `@Observes StartupEvent event`.
+- `@Startup`: Marca um bean para ser inicializado juntamente ao servidor. Porém é recomendado criar um método usando `@Observes StartupEvent event`.
 
 - `@ActivateRequestContext`: Possibilita adicionar o contexto de requisição em um método ou classe que não possui contexto. Por exemplo em Threads que precisam realizar selects.
 

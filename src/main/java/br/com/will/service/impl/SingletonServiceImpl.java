@@ -29,7 +29,7 @@ public class SingletonServiceImpl implements SingletonService {
      */
     @Override
     public Long getCount() {
-        Log.infov("Contado atual: {0}", count);
+        Log.infov("Contador atual: {0}", count);
         return count++;
     }
 

@@ -7,6 +7,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import br.com.will.service.PeriodoMapService;
 import br.com.will.service.PeriodoService;
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -26,7 +27,7 @@ public class PeriodoController {
     @GET
     @Path("{periodo}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String periodo(String periodo) {
+    public String periodo(@NotBlank String periodo) {
         return "O periodo selecionado é: " + periodoService.periodo(periodo);
     }
 
@@ -35,7 +36,7 @@ public class PeriodoController {
     @GET
     @Path("map/{periodo}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String periodoMap(String periodo) {
+    public String periodoMap(@NotBlank String periodo) {
         return "O periodo selecionado é: " + periodoServiceMap.periodo(periodo);
     }
 

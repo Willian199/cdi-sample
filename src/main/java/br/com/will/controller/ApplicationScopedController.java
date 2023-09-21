@@ -23,6 +23,6 @@ public class ApplicationScopedController {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String count() {
-        return "Actual count is: " + applicationScopedService.getCount();
+        return "Contador atual: " + applicationScopedService.getCount();
     }
 }

@@ -19,7 +19,7 @@ public class SingletonControllerClone {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String count() {
-        return "Actual count is: " + singletonService.getCount();
+        return "Contador atual: " + singletonService.getCount();
     }
 
 }

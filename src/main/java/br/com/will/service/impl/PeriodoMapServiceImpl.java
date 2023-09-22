@@ -18,7 +18,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
 
 @ApplicationScoped
-public class PeriodoMapServiceImpl implements PeriodoMapService{
+public class PeriodoMapServiceImpl implements PeriodoMapService {
 
     @Inject
     @Any

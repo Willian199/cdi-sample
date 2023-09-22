@@ -19,7 +19,7 @@ public class RequestScopedController {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String count() {
-        return "Actual count is: " + sequestScopedService.getCount();
+        return "Contador atual: " + sequestScopedService.getCount();
     }
 
 }

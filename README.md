@@ -12,7 +12,7 @@ O CDI (Contexts and Dependency Injection) no Quarkus utiliza anotações para in
 
 - `@Singleton`: Esta anotação marca uma classe como escopo Singleton, o que significa que uma única instância será compartilhada por toda a aplicação. A instância é criada quando o **Bean** é injetado e não possui [client proxy](https://quarkus.io/guides/cdi#client_proxies).
 
-- `@Dependent`: Esta anotação marca uma classe como escopo Dependent, o que significa que uma nova instância será criada para cada injeção.
+- `@Dependent`: Esta anotação marca uma classe como escopo Dependent, o que significa que uma nova instância será criada para cada injeção. Porém o seu tempo de vida vai ser o mesmo da classe que está fazendo o `@Inject`. Pode resultar em leaks de Memória.
 
 - `@RequestScoped`: Essa anotação marca uma classe como escopo de requisição, o que significa que uma nova instância será criada para cada requisição HTTP.
 
@@ -26,7 +26,7 @@ O CDI (Contexts and Dependency Injection) no Quarkus utiliza anotações para in
 
 - `@Inject`: Use esta anotação para injetar uma dependência em um componente gerenciado pelo CDI. Por exemplo:
 
-- `@WithCaching`: Permite realizar Cache da instância do **Bean** que foi injetado na classe usando `@Inject`.
+- `@WithCaching`: Permite realizar Cache da instância do **Bean** que foi injetado na classe usando `@Inject`. Não consegui nenhum caso de uso para desmonstrar, mas normalmente é usado ao fazer `@Inject` de **Bean** `@Dependent`.
 
 ## Outras Annotations
 

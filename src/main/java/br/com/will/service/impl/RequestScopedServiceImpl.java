@@ -7,9 +7,9 @@ import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
-public class RequestScopedServiceImpl implements RequestScopedService{
+public class RequestScopedServiceImpl implements RequestScopedService {
 
-     private Long count = 0L;
+    private Long count = 0L;
 
     @PostConstruct
     public void init() {

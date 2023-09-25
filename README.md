@@ -64,9 +64,11 @@ Além das anotações básicas mencionadas acima, no Quarkus oferece suporte a v
 
 - `@PreDestroy`: Marca um método que será executado antes que um bean CDI seja destruído. Isso é útil para realizar ações de limpeza ou liberação de recursos.
 
-- `@Observes` ou `@ObservesAsync`: Esta anotação é usada para criar métodos observadores que reagem a eventos CDI. Os métodos marcados com @Observes podem ser acionados quando ocorrerem eventos específicos.
+- `@Observes` ou `@ObservesAsync`: Esta anotação é usada para criar métodos observadores que reagem a eventos CDI. Os métodos marcados com `@Observes` podem ser acionados quando ocorrerem eventos específicos.
 
 - `@Startup`: Marca um bean para ser inicializado juntamente ao servidor. Porém é recomendado criar um método usando `@Observes StartupEvent event`.
+
+- `@Shutdown`: Marca um bean para ser executado no momento em que servidor será parado/desativado. Disponível apartir do **Quarkus 3.5**. Porém é recomendado criar um método usando `@Observes ShutdownEvent event`.
 
 - `@ActivateRequestContext`: Possibilita adicionar o contexto de requisição em um método ou classe que não possui contexto. Por exemplo em Threads que precisam realizar selects.
 

@@ -1,5 +1,6 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.literal.SelectorLiteral;
 import br.com.will.service.PeriodoNomeadoService;
 import br.com.will.service.PeriodoQualifierService;
@@ -9,6 +10,7 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
+@LogMe
 public class PeriodoQualifierServiceImpl implements PeriodoQualifierService {
 
     @Any

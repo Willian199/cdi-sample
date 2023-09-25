@@ -1,5 +1,6 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.service.SingletonService;
 import io.quarkus.logging.Log;
 import jakarta.annotation.PostConstruct;
@@ -7,6 +8,7 @@ import jakarta.annotation.PreDestroy;
 import jakarta.inject.Singleton;
 
 @Singleton
+@LogMe
 public class SingletonServiceImpl implements SingletonService {
 
     private Long count = 0L;

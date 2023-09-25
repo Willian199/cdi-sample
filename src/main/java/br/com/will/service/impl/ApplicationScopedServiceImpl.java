@@ -1,11 +1,13 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.service.ApplicationScopedService;
 import io.quarkus.logging.Log;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
 
+@LogMe
 @ApplicationScoped
 public class ApplicationScopedServiceImpl implements ApplicationScopedService {
 

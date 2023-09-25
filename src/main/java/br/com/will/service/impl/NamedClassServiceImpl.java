@@ -1,5 +1,6 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.service.NamedService;
 import io.quarkus.logging.Log;
 import jakarta.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import jakarta.inject.Named;
 
 @Named("namedClass")
 @ApplicationScoped
+@LogMe
 public class NamedClassServiceImpl implements NamedService {
 
     @PostConstruct

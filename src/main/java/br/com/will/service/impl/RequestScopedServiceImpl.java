@@ -1,5 +1,6 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.service.RequestScopedService;
 import io.quarkus.logging.Log;
 import jakarta.annotation.PostConstruct;
@@ -7,6 +8,7 @@ import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
+@LogMe
 public class RequestScopedServiceImpl implements RequestScopedService {
 
     private Long count = 0L;

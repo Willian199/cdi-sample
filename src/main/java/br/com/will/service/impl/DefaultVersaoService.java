@@ -1,10 +1,11 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.service.VersaoService;
 import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Alternative;
-
+@LogMe
 @ApplicationScoped
 @Alternative
 @Priority(jakarta.interceptor.Interceptor.Priority.APPLICATION)

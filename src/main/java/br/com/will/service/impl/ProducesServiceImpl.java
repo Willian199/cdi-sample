@@ -1,5 +1,6 @@
 package br.com.will.service.impl;
 
+import br.com.will.annotation.LogMe;
 import br.com.will.record.SistemaRecord;
 import br.com.will.service.ProducesService;
 import io.quarkus.logging.Log;
@@ -10,6 +11,7 @@ import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
 
 @RequestScoped
+@LogMe
 public class ProducesServiceImpl implements ProducesService {
 
     @PostConstruct
@@ -35,21 +37,19 @@ public class ProducesServiceImpl implements ProducesService {
     @Produces
     @Override
     public SistemaRecord definirSistema() {
-
+        Log.info("Realizando o Produces do SistemaRecord");
         return new SistemaRecord(System.getProperty("os.name"));
 
     }
 
     /**
-     * O @Dispose serve somente para descartar objetos que foram produzidos
+     * O @Dispose serve somente para descartar objetos que foram criados
      * com @Produces.
      */
     @Override
     public void close(@Disposes SistemaRecord sistemaRecord) {
         Log.info("Realizando o Dispose do SistemaRecord");
-        if (sistemaRecord != null) {
-            sistemaRecord = null;
-        }
+
     }
 
 }

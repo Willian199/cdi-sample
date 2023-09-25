@@ -1,6 +1,7 @@
 package br.com.will.service.impl;
 
 import br.com.will.annotation.Diario;
+import br.com.will.annotation.LogMe;
 import br.com.will.annotation.Mensal;
 import br.com.will.annotation.Semanal;
 import br.com.will.service.BasePeriodoService;
@@ -10,6 +11,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
 
 @ApplicationScoped
+@LogMe
 public class PeriodoServiceImpl implements PeriodoService {
 
     @Inject

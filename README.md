@@ -26,7 +26,7 @@ O CDI (Contexts and Dependency Injection) no Quarkus utiliza anotações para in
 
 - `@Inject`: Use esta anotação para injetar uma dependência em um componente gerenciado pelo CDI. Por exemplo:
 
-- `@WithCaching`: Permite realizar Cache da instância do **Bean** que foi injetado na classe usando `@Inject`. Não consegui nenhum caso de uso para desmonstrar, mas normalmente é usado ao fazer `@Inject` de **Bean** `@Dependent`.
+- `@WithCaching`: Permite realizar Cache da instância do **Bean** que foi injetado na classe usando `@Inject`. Normalmente é usado ao fazer `@Inject` de um **Bean** `@Dependent`.
 
 ## Outras Annotations
 
@@ -80,4 +80,4 @@ Além das anotações básicas mencionadas acima, no Quarkus oferece suporte a v
 
 - `@ConfigProperty`: Usada para injetar valores de configuração definidos em arquivos de propriedades ou variáveis de ambiente. Isso permite que você configure beans com propriedades externas.
 
-- `@Lock`: Usado para definir o funcionamento do acesso concorrente ao **Bean**. Normalmente utilizando juntamente com `@ApplicationScoped` e `@Singleton`.
+- `@Lock`: Usado para definir o funcionamento do acesso concorrente ao **Bean**. Normalmente utilizado juntamente com `@ApplicationScoped` e `@Singleton`.

@@ -13,7 +13,7 @@ public class EventEmitter {
     Event<EventoRecord> event;
 
     public void sendEvent() {
-
+        Log.infov("Tipo Thread: {0}", Thread.currentThread().getName());
         // event.fire(new EventoRecord(1L, "Evento de teste")); // Sincrono
         event.fireAsync(new EventoRecord(1L, "Evento de teste"))
                 // Adiciona callbacks para capturar o status da execução

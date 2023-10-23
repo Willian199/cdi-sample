@@ -1,4 +1,4 @@
-package interceptor;
+package br.com.will.interceptor;
 
 import br.com.will.annotation.LogMe;
 import io.quarkus.logging.Log;

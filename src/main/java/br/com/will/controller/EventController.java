@@ -3,6 +3,7 @@ package br.com.will.controller;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import br.com.will.service.EventService;
+import io.smallrye.common.annotation.RunOnVirtualThread;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -16,6 +17,7 @@ public class EventController {
     EventService eventService;
 
     @Operation(description = "Emite um evento que vai diparar um log em outra classe que está configurada para observar o evento definido")
+    @RunOnVirtualThread
     @GET
     @Path("emitirEvento")
     @Produces(MediaType.TEXT_PLAIN)

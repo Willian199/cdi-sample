@@ -16,7 +16,7 @@ public class EventController {
     @Inject
     EventService eventService;
 
-    @Operation(description = "Emite um evento que vai diparar um log em outra classe que está configurada para observar o evento definido")
+    @Operation(description = "Emite um evento que vai disparar um log em outra classe que está configurada para observar o evento definido. Necessário fazer Inject do ExecutorService no emissor para permitir utilizar Virtual Threads.")
     @RunOnVirtualThread
     @GET
     @Path("emitirEvento")

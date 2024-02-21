@@ -4,6 +4,14 @@
 
 Este é um guia sobre Contexts and Dependency Injection (CDI) no Quarkus. Este README fornece informações essenciais para começar a usar a biblioteca em seu projeto Quarkus. A biblioteca ArC é baseada na especificação Jakarta Contexts and Dependency Injection 4.0. Ela implementa a especificação CDI Lite, com melhorias específicas.
 
+Caso deseje testar o projeto em build nativa
+
+Gere a build executando o `build-nativo.sh`
+
+Com o docker instalado, rode o comando `docker compose -f docker-compose.yaml up`
+
+O ambiente ficará disponivel na porta 8080.
+
 ## Uso Básico
 
 O CDI (Contexts and Dependency Injection) no Quarkus utiliza anotações para injetar dependências e gerenciar o ciclo de vida dos objetos. Abaixo estão algumas das anotações mais comuns usadas:

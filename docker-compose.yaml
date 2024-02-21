@@ -1,0 +1,13 @@
+version: "3.6"
+
+services:
+  quarkus-app:
+    image: quay.io/will/cdi-sample
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: '0.6GB'
+  

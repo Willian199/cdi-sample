@@ -32,7 +32,7 @@ O CDI (Contexts and Dependency Injection) no Quarkus utiliza anotações para in
 
 - `@Vetoed`: Esta anotação é usada para marcar uma classe que deve ser ignorada pelo CDI. Isso pode ser útil para evitar que uma classe seja considerada como um bean CDI.
 
-- `@Inject`: Use esta anotação para injetar uma dependência em um componente gerenciado pelo CDI. Por exemplo:
+- `@Inject`: Use esta anotação para injetar uma dependência em um componente gerenciado pelo CDI.
 
 - `@WithCaching`: Permite realizar Cache da instância do **Bean** que foi injetado na classe usando `@Inject`. Normalmente é usado ao fazer `@Inject` de um **Bean** `@Dependent`.
 
